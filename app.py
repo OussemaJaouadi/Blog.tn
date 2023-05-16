@@ -4,7 +4,7 @@ from flask import Flask, jsonify, make_response, render_template, render_templat
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
-from auth import require_role,get_user_from_token,gen_token,SECRET_KEY
+from auth import require_role,get_user_from_token,gen_token,SECRET_KEY,PORT
 from forms import RegistrationForm, LoginForm, UpdateAccountForm,PostForm,UpdatePost
 from models import User, Post,Base
 
