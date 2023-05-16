@@ -3,3 +3,4 @@ sqlalchemy
 datetime
 pyjwt
 python-dotenv
+flask-wtf
