@@ -10,6 +10,7 @@ import os
 load_dotenv()
 SECRET_KEY = os.getenv('SECRET')
 SECRET_KEY = b64encode(SECRET_KEY.encode()).decode()
+PORT=os.getenv('PORT')
 
 def gen_token(username,role='user'):
     payload = {
