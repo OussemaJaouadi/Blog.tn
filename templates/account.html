@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="content-section">
+    <div class="media">
+      <div class="media-body">
+        <h2 class="account-heading"> {{ current_user }}</h2>
+      </div>
+    </div>
+
+    
+      <form method="POST" action="" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Account Info</legend>
+              <div class="form-group">
+                  {{ form.username.label(class="form-control-label") }}
+
+                  {% if form.username.errors %}
+                      {{ form.username(class="form-control form-control-lg is-invalid") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.username.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.username(class="form-control form-control-lg") }}
+                  {% endif %}
+              </div>
+          </fieldset>
+          <a class="btn btn-outline-success" href="{{ url_for('addpost') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+            Add Post
+          </a>
+          <br><br>
+          {% if role == "admin" %}
+          <a class="btn btn-outline-warning" href="{{ url_for('create_notification') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+            Add Notification
+          </a>
+        <br><br>
+        {% endif %}
+          <div class="form-group">
+            
+            {{ form.submit(class="btn btn-outline-info") }}
+          </div>
+      </form>
+  </div>
+  {% for post in posts %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.author.username }}</a>
+        <small class="text-muted">{{ post.date }}</small>
+      </div>
+      <h2>
+        <a class="article-title" href="{{ url_for('editpost', id=post.id) }}">{{ post.title }}</a>
+        <br>
+      </h2>
+      <h5>
+        <button class="btn btn-outline-secondary" disabled="True">
+          <small>{{ post.category|upper }}</small>
+        </button>
+      </h5>
+      <br>
+      <h4 class="article-content">{{ post.details }}</h4>
+    </div>
+  </article>
+{% endfor %}
+{% endblock content%}

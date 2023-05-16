@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author.username }}</a>
+              <small class="text-muted">{{ post.date }}</small>
+            </div>
+            <h2>
+              <a class="article-title" href="{{ url_for('editpost', id=post.id) }}">{{ post.title }}</a>
+              <br>
+            </h2>
+            <h5>
+              <button class="btn btn-outline-secondary" disabled="True">
+                <small>{{ post.category|upper }}</small>
+              </button>
+            </h5>
+            <br>
+            <h4 class="article-content">{{ post.details }}</h4>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

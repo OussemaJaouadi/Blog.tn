@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for notif in notifications %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+                <h4 class="mr-2" href="#" > {{ notif.title|upper }} </h4>
+            </div>
+            <h4 class="article-content">
+                <button class="btn btn-outline-warning" disabled="True">
+                    <small>Notification</small>
+                  </button>
+                <small>
+                    <u>Content :</u>
+                </small>
+                {{ notif.message }}
+            </h4>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
