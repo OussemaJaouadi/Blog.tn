@@ -4,3 +4,5 @@ datetime
 pyjwt
 python-dotenv
 flask-wtf
+wheel
+gunicorn
