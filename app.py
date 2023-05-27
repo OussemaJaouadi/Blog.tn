@@ -7,6 +7,8 @@ from sqlalchemy.exc import IntegrityError
 from auth import require_role,get_user_from_token,gen_token,SECRET_KEY,PORT
 from forms import RegistrationForm, LoginForm, UpdateAccountForm,PostForm,UpdatePost
 from models import User, Post,Base
+import os
+
 
 
 app = Flask(__name__)
@@ -227,6 +229,7 @@ def create_notification():
         return render_template('create_notification.html',user=current_user,success=tmpl)
 
     return render_template('create_notification.html',user=current_user)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
